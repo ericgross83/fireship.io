@@ -56,6 +56,12 @@ export default function Home(props) {
   const getMorePosts = async () => {
     setLoading(true);
     const last = posts[posts.length - 1];
+    
+  if (!last) {
+    setPostsEnd(true);
+    setLoading(false)
+    return;
+  }
 
     const cursor = typeof last.createdAt === 'number' ? fromMillis(last.createdAt) : last.createdAt;
 
